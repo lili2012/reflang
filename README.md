@@ -240,3 +240,18 @@ Please check this section later.
 
 ## Kind Words & Donations
 Please check this section later.
+
+Build:
+1. build libclang
+https://docs.qq.com/doc/DYWVKbGNpcmpob1R4?&u=66704af6d9ce49b390a0103c52a6529e
+
+2. clone this repo
+
+3. open this repo in vscode
+
+4. modify CMakeLists.txt 
+list(APPEND CMAKE_PREFIX_PATH "/home/shulian/Desktop/llvm-project/install/") to your libclang install path
+
+5. install cmake and cmake tools plugin in vscode configure and build
+
+

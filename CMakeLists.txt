@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.8.7)
+cmake_minimum_required (VERSION 3.21)
 project (reflang)
 enable_testing()
 
@@ -14,9 +14,8 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	set(CLANG_LIBDIR "C:/Program Files (x86)/LLVM/lib")
 endif()
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-find_package(LibClang REQUIRED)
-include_directories(${CLANG_INCLUDEDIR})
+list(APPEND CMAKE_PREFIX_PATH "/home/shulian/Desktop/llvm-project/install/")
+find_package(Clang REQUIRED)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -38,6 +37,8 @@ add_executable(
 	gen/serializer.function.cpp gen/serializer.function.hpp
 	gen/serializer.util.cpp gen/serializer.util.hpp
 	gen/types.cpp gen/types.hpp)
-target_link_libraries(reflang ${CLANG_LIBS})
+
+target_include_directories(reflang PRIVATE ${CLANG_INCLUDE_DIRS})
+target_link_libraries(reflang libclang)
 
 add_subdirectory(tests)
